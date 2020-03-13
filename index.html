@@ -6,54 +6,50 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script type="text/javascript">
-        CountDownTimer('03/30/2021 09:00 AM', 'date_text'); // 2018년 1월 1일까지, 시간을 표시하려면 01:00 AM과 같은 형식을 사용합니다.
+        CountDownTimer('03/30/2021 09:00 AM', '09/10/2019 09:00 AM', 'pray4si9nia', 'pray4si9nia_p'); // 2018년 1월 1일까지, 시간을 표시하려면 01:00 AM과 같은 형식을 사용합니다.
 
-        function CountDownTimer(dt, id)
+        function CountDownTimer(dt, dt_start, id, id_p)
         {
-        var end = new Date(dt);
-        var _milisecond = 1;
-        var _second = 1000;
-        var _minute = _second * 60;
-        var _hour = _minute * 60;
-        var _day = _hour * 24;
-        var timer;
+            var end = new Date(dt);
+            var start = new Date(dt_start);
+            var distance_total = end - start;
+            var _milisecond = 1;
+            var _second = 1000;
+            var _minute = _second * 60;
+            var _hour = _minute * 60;
+            var _day = _hour * 24;
+            var timer;
 
-        function showRemaining() {
-        var now = new Date();
-        var distance = end - now;
-        if (distance < 0) {
+            function showRemaining() {
+                var now = new Date();
+                var distance = end - now;
+                if (distance < 0) {
+                    clearInterval(timer);
+                    document.getElementById(id).innerHTML = '경 시그니아 전역 축';
+                    return;
+                }
+                var days = Math.floor(distance / _day);
+                var hours = Math.floor((distance % _day) / _hour);
+                var minutes = Math.floor((distance % _hour) / _minute);
+                var seconds = Math.floor((distance % _minute) / _second);
+                var miliseconds = Math.floor((distance % _second) / _milisecond);
 
-        clearInterval(timer);
-        document.getElementById(id).innerHTML = '경 시그니아 전역 축';
+                document.getElementById(id).innerHTML = 'D - ' + pad(days, 3) + '일 ';
+                document.getElementById(id).innerHTML += pad(hours, 2) + '시간 ';
+                document.getElementById(id).innerHTML += pad(minutes, 2) + '분 ';
+                document.getElementById(id).innerHTML += pad(seconds, 2) + '.';
+                document.getElementById(id).innerHTML += pad(miliseconds, 3) + '초';
 
-        return;
-        }
-        var days = Math.floor(distance / _day);
-        var hours = Math.floor((distance % _day) / _hour);
-        var minutes = Math.floor((distance % _hour) / _minute);
-        var seconds = Math.floor((distance % _minute) / _second);
-        var miliseconds = Math.floor((distance % _second) / _milisecond);
-
-        document.getElementById(id).innerHTML = pad(days, 3) + '일 ';
-        document.getElementById(id).innerHTML += pad(hours, 2) + '시간 ';
-        document.getElementById(id).innerHTML += pad(minutes, 2) + '분 ';
-        document.getElementById(id).innerHTML += pad(seconds, 2) + '.';
-        document.getElementById(id).innerHTML += pad(miliseconds, 3) + '초';
-        }
-
-        timer = setInterval(showRemaining, 17);
+                var percentage = (distance_total - distance) / distance_total * 100;
+                document.getElementById(id_p+'_label').innerHTML = percentage.toFixed(6) + '%';
+                document.getElementById(id_p).style.width = percentage.toFixed(2) + '%';
+                document.getElementById(id_p).setAttribute('aria-valuenow', percentage);
+            }
+            timer = setInterval(showRemaining, 17);
         }
         function pad(num, size) {
             var s = "000000000" + num;
             return s.substr(s.length-size);
-        }
-
-        function share_twitter() {
-            var text = document.getElementById('date_text').innerHTML;
-            var title = '시그니아님의 전역까지 ' + text + ' 남았어요.';
-            var url = 'https://play4si9nia.com/';
-            var twitter = 'https://twitter.com/intent/tweet?url=' + url + '&text=' + title + '&hashtags=play4si9nia';
-            window.open(twitter,'popUpWindow','height=300,width=480,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes');
         }
         </script>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -73,12 +69,22 @@
         </div>
         <div class="container mt-3">
             <div class="d-flex justify-content-center">
-                <div id="play4si9nia" style="font-size: 24px;">D - <span id="date_text"></span></div>
+                <div id="pray4si9nia" style="font-size: 24px;"></div>
+            </div>
+        </div>
+        <div class="container mt-3">
+
+            <div class="progress" style="height: 24px;position: relative">
+                <div id="pray4si9nia_p" class="progress-bar progress-bar-striped progress-bar-animated bg-info"
+                     role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
+                </div>
+                <div id="pray4si9nia_p_label" calss="progress-bar"
+                     style="position: absolute; text-align: center; line-height: 24px; font-size: 18px;
+                            overflow: hidden; color: rgb(76, 83, 47); right: 0; left: 0;top: 0;">
+                </div>
             </div>
         </div>
     </body>
 
 </div>
-<div id="logo" style="position:absolute; bottom:20px; left:20px; font-weight: bold; font-size: 15px;">#play4si9nia</div>
-<div id="twitter_btn" style="position:absolute; bottom:20px; right:20px; font-weight: bold; font-size: 15px;"><img src="share.png" style="width:50px; height:50px;" onclick="javascript:share_twitter()"></div>
 </html>
