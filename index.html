@@ -51,6 +51,15 @@
             var s = "000000000" + num;
             return s.substr(s.length-size);
         }
+
+        function share_twitter() {
+            var text = document.getElementById('play4si9nia').innerHTML;
+            var title = '시그니아님의 전역까지 ' + text + ' 남았어요.';
+            var url = 'https://play4si9nia.com/';
+            var twitter = 'https://twitter.com/intent/tweet?url=' + url + '&text=' + title + '&hashtags=play4si9nia';
+            window.open(twitter,'popUpWindow','height=300,width=480,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes');
+        }
+
         </script>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta property="og:title" content="play4si9nia" />
@@ -85,6 +94,7 @@
             </div>
         </div>
     </body>
-
+    <div id="logo" style="position:absolute; bottom:20px; left:20px; font-weight: bold; font-size: 15px;">#play4si9nia</div>
+    <div id="twitter_btn" style="position:absolute; bottom:20px; right:20px; font-weight: bold; font-size: 15px;"><img src="share.png" style="width:50px; height:50px;" onclick="javascript:share_twitter()"></div>    
 </div>
 </html>
