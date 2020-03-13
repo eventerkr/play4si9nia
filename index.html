@@ -1,3 +1,46 @@
 <html>
+    <head>
+        <script type="text/javascript">
+        CountDownTimer('03/30/2021 09:00 AM', 'pray4si9nia'); // 2018년 1월 1일까지, 시간을 표시하려면 01:00 AM과 같은 형식을 사용합니다.
+
+        function CountDownTimer(dt, id)
+        {
+        var end = new Date(dt);
+        var _milisecond = 10;
+        var _second = 1000;
+        var _minute = _second * 60;
+        var _hour = _minute * 60;
+        var _day = _hour * 24;
+        var timer;
+
+        function showRemaining() {
+        var now = new Date();
+        var distance = end - now;
+        if (distance < 0) {
+
+        clearInterval(timer);
+
+        return;
+        }
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+        var miliseconds = Math.floor((distance % _second) / _milisecond);
+
+        document.getElementById(id).innerHTML = days + ' : ';
+        document.getElementById(id).innerHTML += hours + ' : ';
+        document.getElementById(id).innerHTML += minutes + ' : ';
+        document.getElementById(id).innerHTML += seconds + ' : ';
+        document.getElementById(id).innerHTML += miliseconds;
+        }
+
+        timer = setInterval(showRemaining, 10);
+        }
+        </script>
+    </head>
 #play4si9nia
+<div id="pray4si9nia">
+
+</div>
 </html>
