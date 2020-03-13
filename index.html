@@ -6,7 +6,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script type="text/javascript">
-        CountDownTimer('03/30/2021 09:00 AM', 'play4si9nia'); // 2018년 1월 1일까지, 시간을 표시하려면 01:00 AM과 같은 형식을 사용합니다.
+        CountDownTimer('03/30/2021 09:00 AM', 'date_text'); // 2018년 1월 1일까지, 시간을 표시하려면 01:00 AM과 같은 형식을 사용합니다.
 
         function CountDownTimer(dt, id)
         {
@@ -34,7 +34,7 @@
         var seconds = Math.floor((distance % _minute) / _second);
         var miliseconds = Math.floor((distance % _second) / _milisecond);
 
-        document.getElementById(id).innerHTML = 'D - ' + pad(days, 3) + '일 ';
+        document.getElementById(id).innerHTML = pad(days, 3) + '일 ';
         document.getElementById(id).innerHTML += pad(hours, 2) + '시간 ';
         document.getElementById(id).innerHTML += pad(minutes, 2) + '분 ';
         document.getElementById(id).innerHTML += pad(seconds, 2) + '.';
@@ -49,7 +49,7 @@
         }
 
         function share_twitter() {
-            var text = document.getElementById('play4si9nia').innerHTML;
+            var text = document.getElementById('date_text').innerHTML;
             var title = '시그니아님의 전역까지 ' + text + ' 남았어요.';
             var url = 'https://play4si9nia.com/';
             var twitter = 'https://twitter.com/intent/tweet?url=' + url + '&text=' + title + '&hashtags=play4si9nia';
@@ -73,7 +73,7 @@
         </div>
         <div class="container mt-3">
             <div class="d-flex justify-content-center">
-                <div id="play4si9nia" style="font-size: 24px;">
+                <div id="play4si9nia" style="font-size: 24px;">D - <span id="date_text"></span></div>
             </div>
         </div>
     </body>
