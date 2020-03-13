@@ -6,7 +6,7 @@
         function CountDownTimer(dt, id)
         {
         var end = new Date(dt);
-        var _milisecond = 10;
+        var _milisecond = 1;
         var _second = 1000;
         var _minute = _second * 60;
         var _hour = _minute * 60;
@@ -19,6 +19,7 @@
         if (distance < 0) {
 
         clearInterval(timer);
+        document.getElementById(id).innerHTML = '경 시그니아 전역 축';
 
         return;
         }
@@ -28,14 +29,18 @@
         var seconds = Math.floor((distance % _minute) / _second);
         var miliseconds = Math.floor((distance % _second) / _milisecond);
 
-        document.getElementById(id).innerHTML = days + ' : ';
-        document.getElementById(id).innerHTML += hours + ' : ';
-        document.getElementById(id).innerHTML += minutes + ' : ';
-        document.getElementById(id).innerHTML += seconds + ' : ';
-        document.getElementById(id).innerHTML += miliseconds;
+        document.getElementById(id).innerHTML = 'D - ' + pad(days, 3) + ' ';
+        document.getElementById(id).innerHTML += pad(hours, 2) + ' : ';
+        document.getElementById(id).innerHTML += pad(minutes, 2) + ' : ';
+        document.getElementById(id).innerHTML += pad(seconds, 2) + '.';
+        document.getElementById(id).innerHTML += pad(miliseconds, 3);
         }
 
-        timer = setInterval(showRemaining, 10);
+        timer = setInterval(showRemaining, 17);
+        }
+        function pad(num, size) {
+            var s = "000000000" + num;
+            return s.substr(s.length-size);
         }
         </script>
     </head>
