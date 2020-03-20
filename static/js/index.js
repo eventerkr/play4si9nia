@@ -10,6 +10,7 @@ const Index = {
   },
   addEvent() {
     this.share_twitter()
+    this.pay_respect()
   },
   countDownTimer({ startDate, endDate, countDownTextElSelector, percentageElSelector }) {
     const start = new Date(startDate);
@@ -78,6 +79,17 @@ const Index = {
       window.open(twitter,'popUpWindow','height=300,width=480,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes');
     });
   },
+  pay_respect() {
+    document.querySelector('#pay_respect').addEventListener('click', () => {
+      var elem = document.getElementById('profile_pic');
+      if(elem.style.display == 'none') {
+          elem.style.display = 'block';
+      } else {
+          elem.style.display = 'none';
+      }
+    });
+  },
+
 };
 
 Index.init();
