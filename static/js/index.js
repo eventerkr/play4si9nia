@@ -7,6 +7,10 @@ const Index = {
       countDownTextElSelector: 'date_text',
       percentageElSelector: 'percentage',
     });
+    const today = new Date()
+    if (today.getMonth() == 3 && today.getDate() == 20) {
+      confetti.start(10000);
+    }
   },
   addEvent() {
     this.share_twitter()
