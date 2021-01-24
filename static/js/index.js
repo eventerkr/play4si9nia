@@ -3,7 +3,7 @@ const Index = {
     this.addEvent();
     this.countDownTimer({
       startDate: '09/10/2019 09:00 AM', // 2018년 1월 1일까지, 시간을 표시하려면 01:00 AM과 같은 형식을 사용합니다.
-      endDate: '03/30/2021 09:00 AM',
+      endDate: '01/25/2021 09:00 AM',
       countDownTextElSelector: 'date_text',
       percentageElSelector: 'percentage',
     });
@@ -25,7 +25,22 @@ const Index = {
     const showRemaining = (distance) => {
       if (distance < 0) {
         clearInterval(timerInterval);
-        document.getElementById(countDownTextElSelector).innerHTML = '경 시그니아 전역 축';
+
+        document.getElementsByClassName('container')[0].hidden = true;
+        document.getElementsByClassName('container')[1].hidden = true;
+        document.getElementsByClassName('container')[2].hidden = true;
+        document.getElementsByClassName('container')[2].hidden = true;
+        document.getElementsByClassName('progress')[0].hidden = true;
+        document.getElementById(countDownTextElSelector).hidden = true;
+        document.getElementById('pay_respect').hidden = true;
+        document.getElementById('logo').hidden = true;
+
+        document.body.style.backgroundImage = "url(static/img/freedom_960.png)";
+        document.documentElement.style.height = "100%";
+        document.body.style.backgroundSize = "auto 100%";
+        document.body.style.backgroundRepeat = "no-repeat";
+        document.body.style.backgroundPositionX = "center";
+
         return;
       }
 
@@ -76,8 +91,14 @@ const Index = {
   },
   share_twitter() {
     document.querySelector('#twitter_btn').addEventListener('click', () => {
+      const now = new Date();
+      const end = new Date('01/25/2021 09:00 AM')
+      const distance = end - now;
       const text = document.getElementById('date_text').innerHTML;
-      const title = '시그니아님의 전역까지 ' + text + ' 남았어요.';
+      var title = '시그니아님의 전역까지 ' + text + ' 남았어요.';
+      if (distance < 0) {
+        title = '시그니아님의 군생활이 드디어 끝나버렸어요!';
+      }
       const url = 'https://play4si9nia.com/';
       const twitter = 'https://twitter.com/intent/tweet?url=' + url + '&text=' + title + '&hashtags=play4si9nia';
       window.open(twitter,'popUpWindow','height=300,width=480,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes');
